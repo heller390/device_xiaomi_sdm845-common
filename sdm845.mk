@@ -119,7 +119,8 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     ueventd.qcom.rc \
     init.halium.rc \
-    vndk-detect
+    vndk-detect \
+    on-post-data.sh
 
 # Context Hub
 PRODUCT_PACKAGES += \
