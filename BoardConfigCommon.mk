@@ -13,23 +13,28 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo300
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a75
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_USES_64_BIT_BINDER := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sdm845
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RECOVERY := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA84000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_CMDLINE := androidboot.console=tty0 earlycon=msm_geni_serial,0xA84000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_CMDLINE += apparmor=1 security=apparmor # androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += audit=0 selinux=0
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -47,7 +52,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno630
 
 # Audio
 AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
+#AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
 AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
@@ -100,6 +105,7 @@ DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 
 # Partitions
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -138,7 +144,7 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
-TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
+#TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RIL_VARIANT := caf
 
 # Security patch level
