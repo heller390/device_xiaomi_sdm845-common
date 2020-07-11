@@ -1,3 +1,8 @@
+# Ubuntu Touch UDEV
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ubuntu/70-beryllium.rules:system/halium/lib/udev/rules.d/70-beryllium.rules \
+    $(LOCAL_PATH)/ubuntu/display.conf:system/ubuntu/etc/ubuntu-touch-session.d/android.conf
+
 # Misc
 PRODUCT_PACKAGES += \
     libandroid \
