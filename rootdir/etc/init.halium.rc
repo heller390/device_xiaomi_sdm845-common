@@ -40,3 +40,6 @@ on post-fs-data
 on property:sys.boot_completed=1
     write /dev/wcnss_wlan 1
     write /sys/module/wlan/parameters/fwpath sta
+    
+    # System As Root
+export ANDROID_ROOT /system
