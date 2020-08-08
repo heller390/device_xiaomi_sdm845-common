@@ -5,7 +5,7 @@
 #
 
 # Inherit from those products. Most specific first.
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/sdm845-common/sdm845-common-vendor.mk)
@@ -120,7 +120,6 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.halium.rc \
     init.disabled.rc \
-    vndk-detect \
     on-post-data.sh
 
 # Context Hub
@@ -265,8 +264,8 @@ PRODUCT_PACKAGES += \
     libsensorndkbridge
 
 # TextClassifier
-PRODUCT_PACKAGES += \
-    textclassifier.bundle1
+#PRODUCT_PACKAGES += \
+#    textclassifier.bundle1
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -285,7 +284,13 @@ PRODUCT_PACKAGES += \
 
 # VNDK-SP
 PRODUCT_PACKAGES += \
+    vndk-detect \
     vndk-sp
+    
+# Test tools
+PRODUCT_PACKAGES += \
+    bootctl \
+    vintf    
 
 # VR
 PRODUCT_PACKAGES += \
